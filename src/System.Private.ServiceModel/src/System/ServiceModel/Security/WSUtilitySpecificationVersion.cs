@@ -3,12 +3,12 @@
 // See the LICENSE file in the project root for more information.
 
 
+using System.IO;
+using System.Text;
+using System.Xml;
+
 namespace System.ServiceModel.Security
 {
-    using System.ServiceModel;
-    using System.IO;
-    using System.Text;
-    using System.Xml;
 
     using CanonicalFormWriter = IdentityModel.CanonicalFormWriter;
     using SignatureResourcePool = IdentityModel.SignatureResourcePool;

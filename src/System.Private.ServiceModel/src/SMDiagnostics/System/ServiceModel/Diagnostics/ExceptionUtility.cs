@@ -5,6 +5,8 @@
 
 using System.Diagnostics.Tracing;
 using System.Runtime;
+using System.Runtime.CompilerServices;
+using System.Runtime.Diagnostics;
 using System.Xml;
 
 namespace System.ServiceModel.Diagnostics
@@ -29,7 +31,6 @@ namespace System.ServiceModel.Diagnostics
             _name = name;
             _eventSourceName = eventSourceName;
         }
-
 
         public ArgumentException ThrowHelperArgument(string message)
         {

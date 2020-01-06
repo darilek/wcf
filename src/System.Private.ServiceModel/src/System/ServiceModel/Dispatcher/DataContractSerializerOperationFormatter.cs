@@ -619,8 +619,9 @@ namespace System.ServiceModel.Dispatcher
                 _knownTypes = knownTypes;
                 _serializerFactory = behavior;
 
-                ContractType = null;
-                _isQueryable = false;
+                // ContractType = null;
+                // _isQueryable = false;
+                ContractType = DataContractSerializerOperationFormatter.GetSubstituteDataContractType(description.Type, out this._isQueryable);
             }
 
             public Type ContractType { get; }

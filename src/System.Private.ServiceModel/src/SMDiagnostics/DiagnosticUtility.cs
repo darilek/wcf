@@ -8,6 +8,7 @@
 using System.Diagnostics;
 using System.Runtime;
 using System.Runtime.CompilerServices;
+using System.ServiceModel.Activation;
 using System.ServiceModel.Diagnostics;
 
 namespace System.ServiceModel
@@ -27,9 +28,11 @@ namespace System.ServiceModel
 
         private static ExceptionUtility s_exceptionUtility = null;
 
+
         private static void UpdateLevel()
         {
         }
+
 
         public static ExceptionUtility ExceptionUtility
         {
@@ -56,6 +59,7 @@ namespace System.ServiceModel
             get { return DiagnosticUtility.s_shouldUseActivity; }
         }
 
+        public static bool ShouldTraceInformation { get; } = false;
 
         [Conditional("DEBUG")]
         internal static void DebugAssert(bool condition, string message)
@@ -72,5 +76,35 @@ namespace System.ServiceModel
         {
             Fx.Assert(message);
         }
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        internal static Exception FailFast(string message)
+        {
+            try
+            {
+                try
+                {
+                    // TODO: implement ...
+                   // DiagnosticUtility.ExceptionUtility.TraceFailFast(message);
+                }
+                finally
+                {
+                    Environment.FailFast(message);
+                }
+            }
+            catch
+            {
+            }
+            Environment.FailFast(message);
+            return (Exception)null;
+        }
+
+        internal static void TraceHandledException(Exception exception, TraceEventType traceEventType)
+        {
+            FxTrace.Exception.TraceHandledException(exception, traceEventType);
+        }
+
+
+ 
     }
 }

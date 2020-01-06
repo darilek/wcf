@@ -3,12 +3,13 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Xml;
+using ID = System.IdentityModel;
 
 namespace System.ServiceModel.Security
 {
     internal class ReferenceList
     {
-        internal static readonly XmlDictionaryString ElementName = System.IdentityModel.XD.XmlEncryptionDictionary.ReferenceList;
-        internal static readonly XmlDictionaryString NamespaceUri = System.IdentityModel.XD.XmlEncryptionDictionary.Namespace;
+        internal static readonly XmlDictionaryString ElementName = ID.XD.XmlEncryptionDictionary.ReferenceList;
+        internal static readonly XmlDictionaryString NamespaceUri = ID.XD.XmlEncryptionDictionary.Namespace;
     }
 }

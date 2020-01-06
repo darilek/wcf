@@ -4,7 +4,7 @@
     <AssemblyVersion>4.7.0.0</AssemblyVersion>
     <StrongNameKeyId>Microsoft</StrongNameKeyId>
     <AssemblyName>System.Private.ServiceModel</AssemblyName>
-    <RootNamespace>System.ServiceModel</RootNamespace>
+    <RootNamespace>System</RootNamespace>
     <!-- https://docs.microsoft.com/en-us/nuget/reference/target-frameworks -->
     <TargetFramework>netstandard2.0</TargetFramework>
     <OutputType>Library</OutputType>
@@ -48,23 +48,46 @@
   <PropertyGroup Condition="$(TargetFramework.StartsWith('netstandard'))">
     <DefineConstants>$(DefineConstants);FEATURE_CORECLR</DefineConstants>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <Compile Remove="Microsoft\CoordinationContext.cs" />
+    <Compile Remove="System\ServiceModel\Channels\TransactionChannel.cs" />
+    <Compile Remove="System\ServiceModel\Channels\TransactionChannelFactory.cs" />
+    <Compile Remove="System\ServiceModel\Channels\TransactionChannelFaultConverter.cs" />
+    <Compile Remove="System\ServiceModel\Channels\TransactionDuplexChannelGeneric.cs" />
+    <Compile Remove="System\ServiceModel\Channels\TransactionOutputChannelGeneric.cs" />
+    <Compile Remove="System\ServiceModel\Channels\TransactionOutputDuplexChannelGeneric.cs" />
+    <Compile Remove="System\ServiceModel\Channels\TransactionReceiveChannelGeneric.cs" />
+    <Compile Remove="System\ServiceModel\Channels\TransactionRequestChannelGeneric.cs" />
+    <Compile Remove="System\ServiceModel\Transactions\OleTxTransactionFormatter.cs" />
+    <Compile Remove="System\ServiceModel\Transactions\OleTxTransactionHeader.cs" />
+    <Compile Remove="System\ServiceModel\Transactions\OleTxTransactionInfo.cs" />
+    <Compile Remove="System\ServiceModel\Transactions\ProtocolInformationReader.cs" />
+    <Compile Remove="System\ServiceModel\Transactions\TransactionFormatter.cs" />
+    <Compile Remove="System\ServiceModel\Transactions\WhereaboutsReader.cs" />
+    <Compile Remove="System\ServiceModel\Transactions\WsatConfiguration.cs" />
+    <Compile Remove="System\ServiceModel\Transactions\WsatExtendedInformation.cs" />
+    <Compile Remove="System\ServiceModel\Transactions\WsatExtendedInformationCache.cs" />
+    <Compile Remove="System\ServiceModel\Transactions\WsatProxy.cs" />
+    <Compile Remove="System\ServiceModel\Transactions\WsatRegistrationHeader.cs" />
+    <Compile Remove="System\ServiceModel\Transactions\WsatTransactionFormatter.cs" />
+    <Compile Remove="System\ServiceModel\Transactions\WsatTransactionFormatter10.cs" />
+    <Compile Remove="System\ServiceModel\Transactions\WsatTransactionFormatter11.cs" />
+    <Compile Remove="System\ServiceModel\Transactions\WsatTransactionHeader.cs" />
+  </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Reflection.DispatchProxy"
-                      Version="$(SystemReflectionDispatchProxyPackageVersion)" />
-    <PackageReference Include="System.Security.Principal.Windows"
-                      Version="$(SystemSecurityPrincipalWindowsPackageVersion)" />
-  <PackageReference Include="System.Security.Cryptography.Xml"
-                      Version="$(SystemSecurityCryptographyXmlPackageVersion)" />
+    <PackageReference Include="System.Reflection.DispatchProxy" Version="$(SystemReflectionDispatchProxyPackageVersion)" />
+    <PackageReference Include="System.Security.Principal.Windows" Version="$(SystemSecurityPrincipalWindowsPackageVersion)" />
+  <PackageReference Include="System.Security.Cryptography.Xml" Version="$(SystemSecurityCryptographyXmlPackageVersion)" />
   </ItemGroup>
 
   <ItemGroup Condition="$(TargetFramework.StartsWith('uap'))">
     <!-- [todo:arcade] This package contains Windows.winmd, this is the easiest way to get it. -->
-    <PackageReference Include="Microsoft.TargetingPack.Private.WinRT"
-                      Version="1.0.3" />
+    <PackageReference Include="Microsoft.TargetingPack.Private.WinRT" Version="1.0.3" />
     <!--[todo:arcade] The Arcade SDK assumes resources being embedded are '.resx' files and generates sources and changes the name.-->
     <!--Override this behavior by setting 'GenerateSource' and 'ManifestResourceName'.-->
-    <EmbeddedResource Include="$(MsBuildThisFileDirectory)Resources\$(AssemblyName).rd.xml" >
+    <EmbeddedResource Include="$(MsBuildThisFileDirectory)Resources\$(AssemblyName).rd.xml">
         <GenerateSource>False</GenerateSource>
         <ManifestResourceName>$(AssemblyName).rd.xml</ManifestResourceName>
     </EmbeddedResource>

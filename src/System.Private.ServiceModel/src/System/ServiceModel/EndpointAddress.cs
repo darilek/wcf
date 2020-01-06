@@ -510,6 +510,19 @@ namespace System.ServiceModel
             return ReadFrom(reader, out dummyVersion);
         }
 
+        public static EndpointAddress ReadFrom(AddressingVersion addressingVersion, XmlDictionaryReader reader, XmlDictionaryString localName, XmlDictionaryString ns)
+        {
+            if (reader == null)
+                throw DiagnosticUtility.ExceptionUtility.ThrowHelperArgumentNull("reader");
+            if (addressingVersion == null)
+                throw DiagnosticUtility.ExceptionUtility.ThrowHelperArgumentNull("addressingVersion");
+
+            reader.ReadFullStartElement(localName, ns);
+            EndpointAddress ea = ReadFromDriver(addressingVersion, reader);
+            reader.ReadEndElement();
+            return ea;
+        }
+
         internal static EndpointAddress ReadFrom(XmlDictionaryReader reader, out AddressingVersion version)
         {
             if (reader == null)

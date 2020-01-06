@@ -3,12 +3,13 @@
 // See the LICENSE file in the project root for more information.
 
 
+using System.Globalization;
+using System.IdentityModel.Tokens;
+using System.Runtime.CompilerServices;
+using System.Xml;
+
 namespace System.ServiceModel.Security
 {
-    using System.Globalization;
-    using System.IdentityModel.Tokens;
-    using System.Runtime.CompilerServices;
-    using System.Xml;
     using DiagnosticUtility = DiagnosticUtility;
 
     [TypeForwardedFrom("System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089")]

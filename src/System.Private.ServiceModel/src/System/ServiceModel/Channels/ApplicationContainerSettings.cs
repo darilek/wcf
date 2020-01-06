@@ -3,6 +3,8 @@
 // See the LICENSE file in the project root for more information.
 
 
+using System.Globalization;
+
 namespace System.ServiceModel.Channels
 {
     public sealed class ApplicationContainerSettings
@@ -49,6 +51,17 @@ namespace System.ServiceModel.Channels
 
                 _sessionId = value;
             }
+        }
+
+        internal string GetConnectionGroupSuffix()
+        {
+            string suffix = string.Empty;
+            if (AppContainerInfo.IsAppContainerSupported && this.TargetingAppContainer)
+            {
+                suffix = string.Format(CultureInfo.InvariantCulture, GroupNameSuffixFormat, this.SessionId, this.PackageFullName);
+            }
+
+            return suffix;
         }
 
         internal bool TargetingAppContainer

@@ -4,6 +4,7 @@
 
 
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Diagnostics.Tracing;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -96,6 +97,11 @@ namespace System.Runtime
             // A null inner exception is unlikely but possible.
             // In this case, trace and return the targetInvocationException itself.
             return TraceException<Exception>(targetInvocationException, eventSource);
+        }
+
+        internal void TraceHandledException(Exception exception, TraceEventType traceEventType)
+        {
+            //throw new NotImplementedException();
         }
 
         public Exception AsError<TPreferredException>(AggregateException aggregateException)

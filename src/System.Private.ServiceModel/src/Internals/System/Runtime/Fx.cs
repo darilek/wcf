@@ -13,6 +13,7 @@ using System.Runtime.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 using System.Security;
+using System.Threading;
 
 namespace System.Runtime
 {
@@ -284,6 +285,19 @@ namespace System.Runtime
             return false;
         }
 #endif
+
+        public static WaitOrTimerCallback ThunkCallback(WaitOrTimerCallback callback)
+        {
+            return (new WaitOrTimerThunk(callback)).ThunkFrame;
+        }
+
+
+        [Fx.Tag.SecurityNote(Critical = "Construct the unsafe object IOCompletionThunk")]
+        [SecurityCritical]
+        public static IOCompletionCallback ThunkCallback(IOCompletionCallback callback)
+        {
+            return (new IOCompletionThunk(callback)).ThunkFrame;
+        }
 
         public static AsyncCallback ThunkCallback(AsyncCallback callback)
         {
@@ -942,6 +956,84 @@ namespace System.Runtime
                 }
             }
         }
+
+        sealed class WaitOrTimerThunk : Thunk<WaitOrTimerCallback>
+        {
+            public WaitOrTimerThunk(WaitOrTimerCallback callback) : base(callback)
+            {
+            }
+
+            public WaitOrTimerCallback ThunkFrame
+            {
+                get
+                {
+                    return new WaitOrTimerCallback(UnhandledExceptionFrame);
+                }
+            }
+
+            [Fx.Tag.SecurityNote(Critical = "Calls PrepareConstrainedRegions which has a LinkDemand",
+                Safe = "Guaranteed not to call into PT user code from the finally.")]
+            [SecuritySafeCritical]
+            void UnhandledExceptionFrame(object state, bool timedOut)
+            {
+                RuntimeHelpers.PrepareConstrainedRegions();
+                try
+                {
+                    Callback(state, timedOut);
+                }
+                catch (Exception exception)
+                {
+                    if (!Fx.HandleAtThreadBase(exception))
+                    {
+                        throw;
+                    }
+                }
+            }
+        }
+
+
+        // This can't derive from Thunk since T would be unsafe.
+        [Fx.Tag.SecurityNote(Critical = "unsafe object")]
+        [SecurityCritical]
+        sealed unsafe class IOCompletionThunk
+        {
+            [Fx.Tag.SecurityNote(Critical = "Make these safe to use in SecurityCritical contexts.")]
+            IOCompletionCallback callback;
+
+            [Fx.Tag.SecurityNote(Critical = "Accesses critical field.", Safe = "Data provided by caller.")]
+            public IOCompletionThunk(IOCompletionCallback callback)
+            {
+                this.callback = callback;
+            }
+
+            public IOCompletionCallback ThunkFrame
+            {
+                [Fx.Tag.SecurityNote(Safe = "returns a delegate around the safe method UnhandledExceptionFrame")]
+                get
+                {
+                    return new IOCompletionCallback(UnhandledExceptionFrame);
+                }
+            }
+
+            [Fx.Tag.SecurityNote(Critical = "Accesses critical field, calls PrepareConstrainedRegions which has a LinkDemand",
+                Safe = "Delegates can be invoked, guaranteed not to call into PT user code from the finally.")]
+            void UnhandledExceptionFrame(uint error, uint bytesRead, NativeOverlapped* nativeOverlapped)
+            {
+                RuntimeHelpers.PrepareConstrainedRegions();
+                try
+                {
+                    this.callback(error, bytesRead, nativeOverlapped);
+                }
+                catch (Exception exception)
+                {
+                    if (!Fx.HandleAtThreadBase(exception))
+                    {
+                        throw;
+                    }
+                }
+            }
+        }
+
 
         internal class InternalException : Exception
         {

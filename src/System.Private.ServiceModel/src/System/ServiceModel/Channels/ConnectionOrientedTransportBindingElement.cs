@@ -15,24 +15,69 @@ namespace System.ServiceModel.Channels
         private int _maxBufferSize;
         private bool _maxBufferSizeInitialized;
         private TransferMode _transferMode;
+        private HostNameComparisonMode hostNameComparisonMode;
+        private int maxPendingConnections;
+        private bool isMaxPendingConnectionsSet;
 
         internal ConnectionOrientedTransportBindingElement()
             : base()
         {
             _connectionBufferSize = ConnectionOrientedTransportDefaults.ConnectionBufferSize;
+            hostNameComparisonMode = ConnectionOrientedTransportDefaults.HostNameComparisonMode;
             MaxOutputDelay = ConnectionOrientedTransportDefaults.MaxOutputDelay;
             _maxBufferSize = TransportDefaults.MaxBufferSize;
             _transferMode = ConnectionOrientedTransportDefaults.TransferMode;
+            maxPendingConnections = ConnectionOrientedTransportDefaults.GetMaxPendingConnections();
         }
 
         internal ConnectionOrientedTransportBindingElement(ConnectionOrientedTransportBindingElement elementToBeCloned)
             : base(elementToBeCloned)
         {
             _connectionBufferSize = elementToBeCloned._connectionBufferSize;
+            hostNameComparisonMode = elementToBeCloned.hostNameComparisonMode;
             ExposeConnectionProperty = elementToBeCloned.ExposeConnectionProperty;
             _maxBufferSize = elementToBeCloned._maxBufferSize;
             _maxBufferSizeInitialized = elementToBeCloned._maxBufferSizeInitialized;
             _transferMode = elementToBeCloned._transferMode;
+            maxPendingConnections = elementToBeCloned.maxPendingConnections;
+            isMaxPendingConnectionsSet = elementToBeCloned.isMaxPendingConnectionsSet;
+        }
+
+        [DefaultValue(ConnectionOrientedTransportDefaults.HostNameComparisonMode)]
+        public HostNameComparisonMode HostNameComparisonMode
+        {
+            get
+            {
+                return this.hostNameComparisonMode;
+            }
+
+            set
+            {
+                HostNameComparisonModeHelper.Validate(value);
+                this.hostNameComparisonMode = value;
+            }
+        }
+
+        public int MaxPendingConnections
+        {
+            get
+            {
+                return this.maxPendingConnections;
+            }
+            set
+            {
+                if (value <= 0)
+                    throw DiagnosticUtility.ExceptionUtility.ThrowHelperError(new ArgumentOutOfRangeException("value", value,
+                        SR.Format(SR.ValueMustBePositive)));
+
+                this.maxPendingConnections = value;
+                this.isMaxPendingConnectionsSet = true;
+            }
+        }
+
+        internal bool IsMaxPendingConnectionsSet
+        {
+            get { return this.isMaxPendingConnectionsSet; }
         }
 
         // client
@@ -184,6 +229,12 @@ namespace System.ServiceModel.Channels
                 encodingBindingElement = new BinaryMessageEncodingBindingElement();
             }
             return encodingBindingElement;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ShouldSerializeMaxPendingConnections()
+        {
+            return this.isMaxPendingConnectionsSet;
         }
     }
 }

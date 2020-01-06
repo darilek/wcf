@@ -4,6 +4,7 @@
 
 using System.Collections.Generic;
 using System.IdentityModel.Tokens;
+using System.Net.Security;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Description;
 using System.ServiceModel.Dispatcher;
@@ -250,7 +251,7 @@ namespace System.ServiceModel.Security
                 [OperationContract(IsOneWay = false,
                                    Action = TrustFeb2005Strings.RequestSecurityTokenIssuance,
                                    ReplyAction = TrustFeb2005Strings.RequestSecurityTokenIssuanceResponse)]
-                [FaultContract(typeof(string), Action = "*", ProtectionLevel = System.Net.Security.ProtectionLevel.Sign)]
+                [FaultContract(typeof(string), Action = "*", ProtectionLevel = ProtectionLevel.Sign)]
                 Message RequestToken(Message message);
             }
 

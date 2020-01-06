@@ -107,15 +107,15 @@ namespace System.ServiceModel.Channels
             return runtimeSettings;
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage(FxCop.Category.ReliabilityBasic, FxCop.Rule.WrapExceptionsRule,
-                    Justification = "The exceptions thrown here are already wrapped.")]
+       // [System.Diagnostics.CodeAnalysis.SuppressMessage(FxCop.Category.ReliabilityBasic, FxCop.Rule.WrapExceptionsRule,
+       //             Justification = "The exceptions thrown here are already wrapped.")]
         internal static void ThrowCorrectException(Exception ex)
         {
             throw ConvertAndTraceException(ex);
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage(FxCop.Category.ReliabilityBasic, FxCop.Rule.WrapExceptionsRule,
-                    Justification = "The exceptions thrown here are already wrapped.")]
+       // [System.Diagnostics.CodeAnalysis.SuppressMessage(FxCop.Category.ReliabilityBasic, FxCop.Rule.WrapExceptionsRule,
+       //             Justification = "The exceptions thrown here are already wrapped.")]
         internal static void ThrowCorrectException(Exception ex, TimeSpan timeout, string operation)
         {
             throw ConvertAndTraceException(ex, timeout, operation);
@@ -129,8 +129,8 @@ namespace System.ServiceModel.Channels
                     null);
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage(FxCop.Category.ReliabilityBasic, "Reliability103:ThrowWrappedExceptionsRule",
-                    Justification = "The exceptions wrapped here will be thrown out later.")]
+       // [System.Diagnostics.CodeAnalysis.SuppressMessage(FxCop.Category.ReliabilityBasic, "Reliability103:ThrowWrappedExceptionsRule",
+       //             Justification = "The exceptions wrapped here will be thrown out later.")]
         internal static Exception ConvertAndTraceException(Exception ex, TimeSpan timeout, string operation)
         {
             ObjectDisposedException objectDisposedException = ex as ObjectDisposedException;
@@ -170,8 +170,8 @@ namespace System.ServiceModel.Channels
             return FxTrace.Exception.AsError(ex);
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage(FxCop.Category.ReliabilityBasic, "Reliability103",
-                            Justification = "The exceptions will be wrapped by the callers.")]
+       // [System.Diagnostics.CodeAnalysis.SuppressMessage(FxCop.Category.ReliabilityBasic, "Reliability103",
+       //                     Justification = "The exceptions will be wrapped by the callers.")]
         internal static Exception ConvertAggregateExceptionToCommunicationException(AggregateException ex)
         {
             Exception exception = FxTrace.Exception.AsError<Exception>(ex);

@@ -12,8 +12,10 @@ namespace System.ServiceModel
     // Static Xml Dictionary
     internal static class XD
     {
-        static public ServiceModelDictionary Dictionary { get { return ServiceModelDictionary.CurrentVersion; } }
+        public static ServiceModelDictionary Dictionary { get { return ServiceModelDictionary.CurrentVersion; } }
 
+        private static AtomicTransactionExternalDictionary atomicTransactionExternalDictionary;
+        private static AtomicTransactionExternal10Dictionary atomicTransactionExternal10Dictionary;
         private static ActivityIdFlowDictionary s_activityIdFlowDictionary;
         private static AddressingDictionary s_addressingDictionary;
         private static Addressing10Dictionary s_addressing10Dictionary;
@@ -29,8 +31,71 @@ namespace System.ServiceModel
         private static TrustFeb2005Dictionary s_trustFeb2005Dictionary;
         private static UtilityDictionary s_utilityDictionary;
         private static XmlSignatureDictionary s_xmlSignatureDictionary;
+        private static CoordinationExternal10Dictionary coordinationExternal10Dictionary;
+        private static CoordinationExternalDictionary coordinationExternalDictionary;
+        private static OleTxTransactionExternalDictionary oleTxTransactionExternalDictionary;
+        private static DotNetAtomicTransactionExternalDictionary dotNetAtomicTransactionExternalDictionary;
 
-        static public ActivityIdFlowDictionary ActivityIdFlowDictionary
+        static public AtomicTransactionExternalDictionary AtomicTransactionExternalDictionary
+        {
+            get
+            {
+                if (atomicTransactionExternalDictionary == null)
+                    atomicTransactionExternalDictionary = new AtomicTransactionExternalDictionary(Dictionary);
+                return atomicTransactionExternalDictionary;
+            }
+        }
+
+        static public AtomicTransactionExternal10Dictionary AtomicTransactionExternal10Dictionary
+        {
+            get
+            {
+                if (atomicTransactionExternal10Dictionary == null)
+                    atomicTransactionExternal10Dictionary = new AtomicTransactionExternal10Dictionary(Dictionary);
+                return atomicTransactionExternal10Dictionary;
+            }
+        }
+
+        public static DotNetAtomicTransactionExternalDictionary DotNetAtomicTransactionExternalDictionary
+        {
+            get
+            {
+                return dotNetAtomicTransactionExternalDictionary ?? (dotNetAtomicTransactionExternalDictionary =
+                           new DotNetAtomicTransactionExternalDictionary(Dictionary));
+            }
+        }
+
+        public static OleTxTransactionExternalDictionary OleTxTransactionExternalDictionary
+        {
+            get
+            {
+                if (XD.oleTxTransactionExternalDictionary == null)
+                    XD.oleTxTransactionExternalDictionary = new OleTxTransactionExternalDictionary(XD.Dictionary);
+                return XD.oleTxTransactionExternalDictionary;
+            }
+        }
+
+        public static CoordinationExternalDictionary CoordinationExternalDictionary
+        {
+            get
+            {
+                if (XD.coordinationExternalDictionary == null)
+                    XD.coordinationExternalDictionary = new CoordinationExternalDictionary(XD.Dictionary);
+                return XD.coordinationExternalDictionary;
+            }
+        }
+
+        public static CoordinationExternal10Dictionary CoordinationExternal10Dictionary
+        {
+            get
+            {
+                if (XD.coordinationExternal10Dictionary == null)
+                    XD.coordinationExternal10Dictionary = new CoordinationExternal10Dictionary(XD.Dictionary);
+                return XD.coordinationExternal10Dictionary;
+            }
+        }
+
+        public static ActivityIdFlowDictionary ActivityIdFlowDictionary
         {
             get
             {
@@ -43,7 +108,7 @@ namespace System.ServiceModel
             }
         }
 
-        static public AddressingDictionary AddressingDictionary
+        public static AddressingDictionary AddressingDictionary
         {
             get
             {
@@ -56,7 +121,7 @@ namespace System.ServiceModel
             }
         }
 
-        static public Addressing10Dictionary Addressing10Dictionary
+        public static Addressing10Dictionary Addressing10Dictionary
         {
             get
             {
@@ -69,7 +134,7 @@ namespace System.ServiceModel
             }
         }
 
-        static public Addressing200408Dictionary Addressing200408Dictionary
+        public static Addressing200408Dictionary Addressing200408Dictionary
         {
             get
             {
@@ -82,7 +147,7 @@ namespace System.ServiceModel
             }
         }
 
-        static public AddressingNoneDictionary AddressingNoneDictionary
+        public static AddressingNoneDictionary AddressingNoneDictionary
         {
             get
             {
@@ -95,7 +160,7 @@ namespace System.ServiceModel
             }
         }
 
-        static public MessageDictionary MessageDictionary
+        public static MessageDictionary MessageDictionary
         {
             get
             {
@@ -108,7 +173,7 @@ namespace System.ServiceModel
             }
         }
 
-        static public Message11Dictionary Message11Dictionary
+        public static Message11Dictionary Message11Dictionary
         {
             get
             {
@@ -121,7 +186,7 @@ namespace System.ServiceModel
             }
         }
 
-        static public Message12Dictionary Message12Dictionary
+        public static Message12Dictionary Message12Dictionary
         {
             get
             {
@@ -134,7 +199,7 @@ namespace System.ServiceModel
             }
         }
 
-        static public SecureConversationFeb2005Dictionary SecureConversationFeb2005Dictionary
+        public static SecureConversationFeb2005Dictionary SecureConversationFeb2005Dictionary
         {
             get
             {
@@ -147,7 +212,7 @@ namespace System.ServiceModel
             }
         }
 
-        static public SecurityAlgorithmDictionary SecurityAlgorithmDictionary
+        public static SecurityAlgorithmDictionary SecurityAlgorithmDictionary
         {
             get
             {
@@ -160,7 +225,7 @@ namespace System.ServiceModel
             }
         }
 
-        static public SecurityJan2004Dictionary SecurityJan2004Dictionary
+        public static SecurityJan2004Dictionary SecurityJan2004Dictionary
         {
             get
             {
@@ -173,7 +238,7 @@ namespace System.ServiceModel
             }
         }
 
-        static public SecurityXXX2005Dictionary SecurityXXX2005Dictionary
+        public static SecurityXXX2005Dictionary SecurityXXX2005Dictionary
         {
             get
             {
@@ -186,7 +251,7 @@ namespace System.ServiceModel
             }
         }
 
-        static public TrustFeb2005Dictionary TrustFeb2005Dictionary
+        public static TrustFeb2005Dictionary TrustFeb2005Dictionary
         {
             get
             {
@@ -199,7 +264,7 @@ namespace System.ServiceModel
             }
         }
 
-        static public UtilityDictionary UtilityDictionary
+        public static UtilityDictionary UtilityDictionary
         {
             get
             {
@@ -212,7 +277,7 @@ namespace System.ServiceModel
             }
         }
 
-        static public XmlSignatureDictionary XmlSignatureDictionary
+        public static XmlSignatureDictionary XmlSignatureDictionary
         {
             get
             {
@@ -223,6 +288,75 @@ namespace System.ServiceModel
 
                 return s_xmlSignatureDictionary;
             }
+        }
+    }
+    internal class AtomicTransactionExternal10Dictionary
+    {
+        public XmlDictionaryString Namespace;
+        public XmlDictionaryString CompletionUri;
+        public XmlDictionaryString Durable2PCUri;
+        public XmlDictionaryString Volatile2PCUri;
+        public XmlDictionaryString CommitAction;
+        public XmlDictionaryString RollbackAction;
+        public XmlDictionaryString CommittedAction;
+        public XmlDictionaryString AbortedAction;
+        public XmlDictionaryString PrepareAction;
+        public XmlDictionaryString PreparedAction;
+        public XmlDictionaryString ReadOnlyAction;
+        public XmlDictionaryString ReplayAction;
+        public XmlDictionaryString FaultAction;
+
+        public AtomicTransactionExternal10Dictionary(ServiceModelDictionary dictionary)
+        {
+            this.Namespace = dictionary.CreateString(ServiceModelStringsVersion1.String382, 382);
+            this.CompletionUri = dictionary.CreateString(ServiceModelStringsVersion1.String384, 384);
+            this.Durable2PCUri = dictionary.CreateString(ServiceModelStringsVersion1.String385, 385);
+            this.Volatile2PCUri = dictionary.CreateString(ServiceModelStringsVersion1.String386, 386);
+            this.CommitAction = dictionary.CreateString(ServiceModelStringsVersion1.String395, 395);
+            this.RollbackAction = dictionary.CreateString(ServiceModelStringsVersion1.String396, 396);
+            this.CommittedAction = dictionary.CreateString(ServiceModelStringsVersion1.String397, 397);
+            this.AbortedAction = dictionary.CreateString(ServiceModelStringsVersion1.String398, 398);
+            this.PrepareAction = dictionary.CreateString(ServiceModelStringsVersion1.String399, 399);
+            this.PreparedAction = dictionary.CreateString(ServiceModelStringsVersion1.String400, 400);
+            this.ReadOnlyAction = dictionary.CreateString(ServiceModelStringsVersion1.String401, 401);
+            this.ReplayAction = dictionary.CreateString(ServiceModelStringsVersion1.String402, 402);
+            this.FaultAction = dictionary.CreateString(ServiceModelStringsVersion1.String403, 403);
+        }
+    }
+
+    internal class AtomicTransactionExternalDictionary
+    {
+        public XmlDictionaryString Prefix;
+        public XmlDictionaryString Prepare;
+        public XmlDictionaryString Prepared;
+        public XmlDictionaryString ReadOnly;
+        public XmlDictionaryString Commit;
+        public XmlDictionaryString Rollback;
+        public XmlDictionaryString Committed;
+        public XmlDictionaryString Aborted;
+        public XmlDictionaryString Replay;
+        public XmlDictionaryString CompletionCoordinatorPortType;
+        public XmlDictionaryString CompletionParticipantPortType;
+        public XmlDictionaryString CoordinatorPortType;
+        public XmlDictionaryString ParticipantPortType;
+        public XmlDictionaryString InconsistentInternalState;
+
+        public AtomicTransactionExternalDictionary(ServiceModelDictionary dictionary)
+        {
+            this.Prefix = dictionary.CreateString("wsat", 383);
+            this.Prepare = dictionary.CreateString(nameof(Prepare), 387);
+            this.Prepared = dictionary.CreateString(nameof(Prepared), 388);
+            this.ReadOnly = dictionary.CreateString(nameof(ReadOnly), 389);
+            this.Commit = dictionary.CreateString(nameof(Commit), 390);
+            this.Rollback = dictionary.CreateString(nameof(Rollback), 391);
+            this.Committed = dictionary.CreateString(nameof(Committed), 392);
+            this.Aborted = dictionary.CreateString(nameof(Aborted), 393);
+            this.Replay = dictionary.CreateString(nameof(Replay), 394);
+            this.CompletionCoordinatorPortType = dictionary.CreateString(nameof(CompletionCoordinatorPortType), 404);
+            this.CompletionParticipantPortType = dictionary.CreateString(nameof(CompletionParticipantPortType), 405);
+            this.CoordinatorPortType = dictionary.CreateString(nameof(CoordinatorPortType), 406);
+            this.ParticipantPortType = dictionary.CreateString(nameof(ParticipantPortType), 407);
+            this.InconsistentInternalState = dictionary.CreateString(nameof(InconsistentInternalState), 408);
         }
     }
 
@@ -237,6 +371,49 @@ namespace System.ServiceModel
             ActivityIdNamespace = dictionary.CreateString(ServiceModelStringsVersion1.String426, 426);
         }
     }
+
+    class DotNetAtomicTransactionExternalDictionary
+    {
+        public XmlDictionaryString Namespace;
+        public XmlDictionaryString Prefix;
+        public XmlDictionaryString Enlistment;
+        public XmlDictionaryString Protocol;
+        public XmlDictionaryString LocalTransactionId;
+        public XmlDictionaryString IsolationLevel;
+        public XmlDictionaryString IsolationFlags;
+        public XmlDictionaryString Description;
+        public XmlDictionaryString Loopback;
+        public XmlDictionaryString RegisterInfo;
+        public XmlDictionaryString ContextId;
+        public XmlDictionaryString TokenId;
+        public XmlDictionaryString AccessDenied;
+        public XmlDictionaryString InvalidPolicy;
+        public XmlDictionaryString CoordinatorRegistrationFailed;
+        public XmlDictionaryString TooManyEnlistments;
+        public XmlDictionaryString Disabled;
+
+        public DotNetAtomicTransactionExternalDictionary(ServiceModelDictionary dictionary)
+        {
+            this.Namespace = dictionary.CreateString(ServiceModelStringsVersion1.String65, 65);
+            this.Prefix = dictionary.CreateString(ServiceModelStringsVersion1.String409, 409);
+            this.Enlistment = dictionary.CreateString(ServiceModelStringsVersion1.String410, 410);
+            this.Protocol = dictionary.CreateString(ServiceModelStringsVersion1.String411, 411);
+            this.LocalTransactionId = dictionary.CreateString(ServiceModelStringsVersion1.String412, 412);
+            this.IsolationLevel = dictionary.CreateString(ServiceModelStringsVersion1.String413, 413);
+            this.IsolationFlags = dictionary.CreateString(ServiceModelStringsVersion1.String414, 414);
+            this.Description = dictionary.CreateString(ServiceModelStringsVersion1.String415, 415);
+            this.Loopback = dictionary.CreateString(ServiceModelStringsVersion1.String416, 416);
+            this.RegisterInfo = dictionary.CreateString(ServiceModelStringsVersion1.String417, 417);
+            this.ContextId = dictionary.CreateString(ServiceModelStringsVersion1.String418, 418);
+            this.TokenId = dictionary.CreateString(ServiceModelStringsVersion1.String419, 419);
+            this.AccessDenied = dictionary.CreateString(ServiceModelStringsVersion1.String420, 420);
+            this.InvalidPolicy = dictionary.CreateString(ServiceModelStringsVersion1.String421, 421);
+            this.CoordinatorRegistrationFailed = dictionary.CreateString(ServiceModelStringsVersion1.String422, 422);
+            this.TooManyEnlistments = dictionary.CreateString(ServiceModelStringsVersion1.String423, 423);
+            this.Disabled = dictionary.CreateString(ServiceModelStringsVersion1.String424, 424);
+        }
+    }
+
 
     internal class AddressingDictionary
     {

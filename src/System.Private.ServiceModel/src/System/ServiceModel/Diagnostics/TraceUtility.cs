@@ -12,6 +12,7 @@ using System.ServiceModel.Dispatcher;
 using System.Threading;
 using System.Security;
 using System.Globalization;
+using System.Diagnostics;
 
 namespace System.ServiceModel.Diagnostics
 {
@@ -359,6 +360,11 @@ namespace System.ServiceModel.Diagnostics
             }
         }
 
+        internal static void TraceEvent(TraceEventType information, int v1, string v2)
+        {
+            throw new NotImplementedException();
+        }
+
         static internal bool MessageFlowTracingOnly
         {
             get
@@ -430,7 +436,7 @@ namespace System.ServiceModel.Diagnostics
         internal static string GetAnnotation(OperationContext context)
         {
             // Desktop obtains annotation from host
-            return String.Empty;
+            return string.Empty;
         }
 
         internal static void TransferFromTransport(Message message)
