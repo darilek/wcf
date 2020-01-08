@@ -41,6 +41,13 @@ namespace System.ServiceModel.Channels
         Task<IConnection> ConnectAsync(Uri uri, TimeSpan timeout);
     }
 
+    interface IConnectionListener : IDisposable
+    {
+        void Listen();
+        IAsyncResult BeginAccept(AsyncCallback callback, object state);
+        IConnection EndAccept(IAsyncResult result);
+    }
+
     internal abstract class DelegatingConnection : IConnection
     {
         protected DelegatingConnection(IConnection connection)

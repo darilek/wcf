@@ -31,5 +31,17 @@ namespace System.Runtime
         internal static string TimeoutInputQueueDequeue(object param0) { throw ExceptionHelper.PlatformNotSupported(); }
         internal static string TimeoutMustBeNonNegative(object param0, object param1) { throw ExceptionHelper.PlatformNotSupported(); }
         internal static string TimeoutMustBePositive(object param0, object param1) { throw ExceptionHelper.PlatformNotSupported(); }
+
+        public static string EtwRegistrationFailed(string toString) => $"{nameof(EtwRegistrationFailed)} - {toString}";
+
+        public static Exception EtwMaxNumberArgumentsExceeded(int etwMaxNumberArguments)
+        {
+           return new Exception("TODO: EtwMaxNumberArgumentsExceeded ");
+        }
+
+        public static Exception EtwAPIMaxStringCountExceeded(int etwApiMaxStringCount)
+        {
+            return new Exception("TODO: EtwAPIMaxStringCountExceeded");
+        }
     }
 }

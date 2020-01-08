@@ -16,6 +16,13 @@ namespace System.ServiceModel.Channels
 {
     // If any of the const's are modified in this file, they must also be modified
     // on the Internal.ServiceModel.Primitives contract and implementation assemblies.
+    internal static class TransactionFlowDefaults
+    {
+        internal const TransactionFlowOption IssuedTokens = TransactionFlowOption.NotAllowed;
+        internal const bool Transactions = false;
+        internal static TransactionProtocol TransactionProtocol = System.ServiceModel.TransactionProtocol.OleTransactions;
+        //internal const string TransactionProtocolString = System.ServiceModel.Configuration.ConfigurationStrings.OleTransactions;
+    }
 
     public static class EncoderDefaults
     {
@@ -287,6 +294,12 @@ namespace System.ServiceModel.Channels
     public static class NetTcpDefaults
     {
         public const MessageCredentialType MessageSecurityClientCredentialType = MessageCredentialType.Windows;
+        internal const bool TransactionsEnabled = false;
+
+        internal static TransactionProtocol TransactionProtocol
+        {
+            get { return TransactionProtocol.Default; }
+        }
     }
 
     public static class OneWayDefaults

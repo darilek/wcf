@@ -12,6 +12,7 @@ using System.ServiceModel.Dispatcher;
 using System.Threading;
 using System.Security;
 using System.Globalization;
+using System.Diagnostics;
 
 namespace System.ServiceModel.Diagnostics
 {
@@ -430,7 +431,7 @@ namespace System.ServiceModel.Diagnostics
         internal static string GetAnnotation(OperationContext context)
         {
             // Desktop obtains annotation from host
-            return String.Empty;
+            return string.Empty;
         }
 
         internal static void TransferFromTransport(Message message)
@@ -632,6 +633,22 @@ namespace System.ServiceModel.Diagnostics
                 }
             }
             return null;
+        }
+
+        internal static void TraceEvent(TraceEventType information, int initiatingNamedPipeConnection, string v, StringTraceRecord stringTraceRecord, PipeConnectionInitiator pipeConnectionInitiator, object p)
+        {
+           // throw new NotImplementedException();
+           // TODO: add trace
+        }
+
+        internal static void TraceEvent(TraceEventType information, int code, string message)
+        {
+            // TODO: add trace
+        }
+        internal static void TraceEvent(TraceEventType severity, int traceCode, string traceDescription, object source)
+        {
+           // TraceEvent(severity, traceCode, traceDescription, null, source, (Exception)null);
+           // TODO: Add trace
         }
     }
 }

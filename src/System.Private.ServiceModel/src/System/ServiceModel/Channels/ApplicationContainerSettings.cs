@@ -51,6 +51,11 @@ namespace System.ServiceModel.Channels
             }
         }
 
+        internal string GetConnectionGroupSuffix()
+        {
+            return string.Format(GroupNameSuffixFormat, SessionId, PackageFullName);
+        }
+
         internal bool TargetingAppContainer
         {
             get

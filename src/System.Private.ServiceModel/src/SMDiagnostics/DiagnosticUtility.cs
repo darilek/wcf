@@ -8,6 +8,7 @@
 using System.Diagnostics;
 using System.Runtime;
 using System.Runtime.CompilerServices;
+using System.ServiceModel.Channels;
 using System.ServiceModel.Diagnostics;
 
 namespace System.ServiceModel
@@ -51,11 +52,12 @@ namespace System.ServiceModel
             return DiagnosticUtility.s_exceptionUtility;
         }
 
-        static internal bool ShouldUseActivity
+        internal static bool ShouldUseActivity
         {
             get { return DiagnosticUtility.s_shouldUseActivity; }
         }
 
+        public static bool ShouldTraceInformation { get; internal set; } = false;
 
         [Conditional("DEBUG")]
         internal static void DebugAssert(bool condition, string message)
@@ -71,6 +73,52 @@ namespace System.ServiceModel
         internal static void DebugAssert(string message)
         {
             Fx.Assert(message);
+        }
+
+        internal static bool ShouldTrace(TraceEventType traceEventType)
+        {
+            // TODO: implement correct tracing
+            return false;
+        }
+
+        public static void TraceHandledException(Exception exception, TraceEventType traceEventType)
+        {
+            // TODO: implement correct TraceHandledException
+            /*
+            switch (traceEventType)
+            {
+                case TraceEventType.Error:
+                    if (TraceCore.HandledExceptionErrorIsEnabled(this.diagnosticTrace))
+                    {
+                        TraceCore.HandledExceptionError(this.diagnosticTrace, exception != null ? exception.ToString() : string.Empty, exception);
+                    }
+                    break;
+                case TraceEventType.Warning:
+                    if (TraceCore.HandledExceptionWarningIsEnabled(this.diagnosticTrace))
+                    {
+                        TraceCore.HandledExceptionWarning(this.diagnosticTrace, exception != null ? exception.ToString() : string.Empty, exception);
+                    }
+                    break;
+                case TraceEventType.Verbose:
+                    if (TraceCore.HandledExceptionVerboseIsEnabled(this.diagnosticTrace))
+                    {
+                        TraceCore.HandledExceptionVerbose(this.diagnosticTrace, exception != null ? exception.ToString() : string.Empty, exception);
+                    }
+                    break;
+                default:
+                    if (TraceCore.HandledExceptionIsEnabled(this.diagnosticTrace))
+                    {
+                        TraceCore.HandledException(this.diagnosticTrace, exception != null ? exception.ToString() : string.Empty, exception);
+                    }
+                    break;
+            }*/
+        }
+
+        public static Exception FailFast(string message)
+        {
+            UnsafeNativeMethods.FailFast(message);
+
+            return null;
         }
     }
 }

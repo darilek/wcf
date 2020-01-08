@@ -20,6 +20,7 @@ namespace System.Runtime.Diagnostics
         private const int MaxExceptionStringLength = 28 * 1024;
         private const int MaxExceptionDepth = 64;
         private static Guid s_defaultEtwProviderId = Guid.Empty;
+        private EtwProvider etwProvider;
 
         //Compiler will add all static initializers into the static constructor.  Adding an explicit one to mark SecurityCritical.
         [Fx.Tag.SecurityNote(Critical = "setting critical field defaultEtwProviderId")]
@@ -68,6 +69,16 @@ namespace System.Runtime.Diagnostics
             get
             {
                 return false;
+            }
+        }
+
+        public EtwProvider EtwProvider
+        {
+            [Fx.Tag.SecurityNote(Critical = "Exposes the critical etwProvider field")]
+            [SecurityCritical]
+            get
+            {
+                return this.etwProvider;
             }
         }
 

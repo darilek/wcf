@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 
+using System.Diagnostics;
 using System.Runtime;
 using System.Threading.Tasks;
 
@@ -107,6 +108,10 @@ namespace System.ServiceModel.Channels
                     {
                         throw DiagnosticUtility.ExceptionUtility.ThrowHelperError(CreateNewConnectionTimeoutException(
                             connectTimeout, e));
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine(ex.ToString());
                     }
 
                     _connectionInitiator = null;

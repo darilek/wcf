@@ -29,6 +29,38 @@ namespace System.ServiceModel
         private static TrustFeb2005Dictionary s_trustFeb2005Dictionary;
         private static UtilityDictionary s_utilityDictionary;
         private static XmlSignatureDictionary s_xmlSignatureDictionary;
+        static CoordinationExternal10Dictionary coordinationExternal10Dictionary;
+        private static CoordinationExternalDictionary coordinationExternalDictionary;
+        private static OleTxTransactionExternalDictionary oleTxTransactionExternalDictionary;
+
+        static public OleTxTransactionExternalDictionary OleTxTransactionExternalDictionary
+        {
+            get
+            {
+                if (oleTxTransactionExternalDictionary == null)
+                    oleTxTransactionExternalDictionary = new OleTxTransactionExternalDictionary(Dictionary);
+                return oleTxTransactionExternalDictionary;
+            }
+        }
+
+        static public CoordinationExternalDictionary CoordinationExternalDictionary
+        {
+            get
+            {
+                if (coordinationExternalDictionary == null)
+                    coordinationExternalDictionary = new CoordinationExternalDictionary(Dictionary);
+                return coordinationExternalDictionary;
+            }
+        }
+        static public CoordinationExternal10Dictionary CoordinationExternal10Dictionary
+        {
+            get
+            {
+                if (coordinationExternal10Dictionary == null)
+                    coordinationExternal10Dictionary = new CoordinationExternal10Dictionary(Dictionary);
+                return coordinationExternal10Dictionary;
+            }
+        }
 
         static public ActivityIdFlowDictionary ActivityIdFlowDictionary
         {
@@ -223,6 +255,93 @@ namespace System.ServiceModel
 
                 return s_xmlSignatureDictionary;
             }
+        }
+    }
+
+    class OleTxTransactionExternalDictionary
+    {
+        public XmlDictionaryString Namespace;
+        public XmlDictionaryString Prefix;
+        public XmlDictionaryString OleTxTransaction;
+        public XmlDictionaryString PropagationToken;
+
+        public OleTxTransactionExternalDictionary(ServiceModelDictionary dictionary)
+        {
+            this.Namespace = dictionary.CreateString(ServiceModelStringsVersion1.String352, 352);
+            this.Prefix = dictionary.CreateString(ServiceModelStringsVersion1.String353, 353);
+            this.OleTxTransaction = dictionary.CreateString(ServiceModelStringsVersion1.String354, 354);
+            this.PropagationToken = dictionary.CreateString(ServiceModelStringsVersion1.String355, 355);
+        }
+    }
+
+    class CoordinationExternalDictionary
+    {
+        public XmlDictionaryString Prefix;
+        public XmlDictionaryString CreateCoordinationContext;
+        public XmlDictionaryString CreateCoordinationContextResponse;
+        public XmlDictionaryString CoordinationContext;
+        public XmlDictionaryString CurrentContext;
+        public XmlDictionaryString CoordinationType;
+        public XmlDictionaryString RegistrationService;
+        public XmlDictionaryString Register;
+        public XmlDictionaryString RegisterResponse;
+        public XmlDictionaryString Protocol;
+        public XmlDictionaryString CoordinatorProtocolService;
+        public XmlDictionaryString ParticipantProtocolService;
+        public XmlDictionaryString Expires;
+        public XmlDictionaryString Identifier;
+        public XmlDictionaryString ActivationCoordinatorPortType;
+        public XmlDictionaryString RegistrationCoordinatorPortType;
+        public XmlDictionaryString InvalidState;
+        public XmlDictionaryString InvalidProtocol;
+        public XmlDictionaryString InvalidParameters;
+        public XmlDictionaryString NoActivity;
+        public XmlDictionaryString ContextRefused;
+        public XmlDictionaryString AlreadyRegistered;
+
+        public CoordinationExternalDictionary(ServiceModelDictionary dictionary)
+        {
+            this.Prefix = dictionary.CreateString(ServiceModelStringsVersion1.String357, 357);
+            this.CreateCoordinationContext = dictionary.CreateString(ServiceModelStringsVersion1.String358, 358);
+            this.CreateCoordinationContextResponse = dictionary.CreateString(ServiceModelStringsVersion1.String359, 359);
+            this.CoordinationContext = dictionary.CreateString(ServiceModelStringsVersion1.String360, 360);
+            this.CurrentContext = dictionary.CreateString(ServiceModelStringsVersion1.String361, 361);
+            this.CoordinationType = dictionary.CreateString(ServiceModelStringsVersion1.String362, 362);
+            this.RegistrationService = dictionary.CreateString(ServiceModelStringsVersion1.String363, 363);
+            this.Register = dictionary.CreateString(ServiceModelStringsVersion1.String364, 364);
+            this.RegisterResponse = dictionary.CreateString(ServiceModelStringsVersion1.String365, 365);
+            this.Protocol = dictionary.CreateString(ServiceModelStringsVersion1.String366, 366);
+            this.CoordinatorProtocolService = dictionary.CreateString(ServiceModelStringsVersion1.String367, 367);
+            this.ParticipantProtocolService = dictionary.CreateString(ServiceModelStringsVersion1.String368, 368);
+            this.Expires = dictionary.CreateString(ServiceModelStringsVersion1.String55, 55);
+            this.Identifier = dictionary.CreateString(ServiceModelStringsVersion1.String15, 15);
+            this.ActivationCoordinatorPortType = dictionary.CreateString(ServiceModelStringsVersion1.String374, 374);
+            this.RegistrationCoordinatorPortType = dictionary.CreateString(ServiceModelStringsVersion1.String375, 375);
+            this.InvalidState = dictionary.CreateString(ServiceModelStringsVersion1.String376, 376);
+            this.InvalidProtocol = dictionary.CreateString(ServiceModelStringsVersion1.String377, 377);
+            this.InvalidParameters = dictionary.CreateString(ServiceModelStringsVersion1.String378, 378);
+            this.NoActivity = dictionary.CreateString(ServiceModelStringsVersion1.String379, 379);
+            this.ContextRefused = dictionary.CreateString(ServiceModelStringsVersion1.String380, 380);
+            this.AlreadyRegistered = dictionary.CreateString(ServiceModelStringsVersion1.String381, 381);
+        }
+    }
+    class CoordinationExternal10Dictionary
+    {
+        public XmlDictionaryString Namespace;
+        public XmlDictionaryString CreateCoordinationContextAction;
+        public XmlDictionaryString CreateCoordinationContextResponseAction;
+        public XmlDictionaryString RegisterAction;
+        public XmlDictionaryString RegisterResponseAction;
+        public XmlDictionaryString FaultAction;
+
+        public CoordinationExternal10Dictionary(ServiceModelDictionary dictionary)
+        {
+            this.Namespace = dictionary.CreateString(ServiceModelStringsVersion1.String356, 356);
+            this.CreateCoordinationContextAction = dictionary.CreateString(ServiceModelStringsVersion1.String369, 369);
+            this.CreateCoordinationContextResponseAction = dictionary.CreateString(ServiceModelStringsVersion1.String370, 370);
+            this.RegisterAction = dictionary.CreateString(ServiceModelStringsVersion1.String371, 371);
+            this.RegisterResponseAction = dictionary.CreateString(ServiceModelStringsVersion1.String372, 372);
+            this.FaultAction = dictionary.CreateString(ServiceModelStringsVersion1.String373, 373);
         }
     }
 

@@ -17,6 +17,18 @@ namespace System
             return false;
         }
 
+        internal static string GetString(string resourceKey, params object[] args)
+        {
+            var str = ResourceManager.GetString(resourceKey);
+            if (args == null || args.Length == 0)
+            {
+                return str;
+            }
+            if (str == null)
+                return null;
+            return string.Format(str, args);
+        }
+
         internal static string Format(string resourceFormat, params object[] args)
         {
             if (args != null)

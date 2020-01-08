@@ -2499,4 +2499,160 @@
   <data name="BasicHttpMessageSecurityRequiresCertificate" xml:space="preserve">
     <value>BasicHttp binding requires that BasicHttpBinding.Security.Message.ClientCredentialType be equivalent to the BasicHttpMessageCredentialType.Certificate credential type for secure messages. Select Transport or TransportWithMessageCredential security for UserName credentials.</value>
   </data>
+  <data name="InvalidAsyncResult" xml:space="preserve">
+    <value>TODO: InvalidAsyncResult</value>
+  </data>
+  <data name="PackageFullNameInvalid" xml:space="preserve">
+    <value>TODO: PackageFullNameInvalid</value>
+  </data>
+  <data name="PipeAlreadyClosing" xml:space="preserve">
+    <value>TODO: PipeAlreadyClosing</value>
+  </data>
+  <data name="PipeAlreadyShuttingDown" xml:space="preserve">
+    <value>TODO: PipeAlreadyShuttingDown</value>
+  </data>
+  <data name="PipeCantCloseWithPendingWrite" xml:space="preserve">
+    <value>TODO: PipeCantCloseWithPendingWrite</value>
+  </data>
+  <data name="PipeClosed" xml:space="preserve">
+    <value>TODO: PipeClosed</value>
+  </data>
+  <data name="PipeCloseFailed" xml:space="preserve">
+    <value>TODO: PipeCloseFailed</value>
+  </data>
+  <data name="PipeConnectAddressFailed" xml:space="preserve">
+    <value>TODO: PipeConnectAddressFailed</value>
+  </data>
+  <data name="PipeConnectFailed" xml:space="preserve">
+    <value>TODO: PipeConnectFailed</value>
+  </data>
+  <data name="PipeConnectionAbortedReadTimedOut" xml:space="preserve">
+    <value>TODO: PipeConnectionAbortedReadTimedOut</value>
+  </data>
+  <data name="PipeConnectionAbortedWriteTimedOut" xml:space="preserve">
+    <value>TODO: PipeConnectionAbortedWriteTimedOut</value>
+  </data>
+  <data name="PipeConnectTimedOut" xml:space="preserve">
+    <value>TODO: PipeConnectTimedOut</value>
+  </data>
+  <data name="PipeConnectTimedOutServerTooBusy" xml:space="preserve">
+    <value>TODO: PipeConnectTimedOutServerTooBusy</value>
+  </data>
+  <data name="PipeDuplicationFailed" xml:space="preserve">
+    <value>TODO: PipeDuplicationFailed</value>
+  </data>
+  <data name="PipeEndpointNotFound" xml:space="preserve">
+    <value>TODO: PipeEndpointNotFound</value>
+  </data>
+  <data name="PipeListenerDisposed" xml:space="preserve">
+    <value>TODO: PipeListenerDisposed</value>
+  </data>
+  <data name="PipeListenerNotListening" xml:space="preserve">
+    <value>TODO: PipeListenerNotListening</value>
+  </data>
+  <data name="PipeListenFailed" xml:space="preserve">
+    <value>TODO: PipeListenFailed</value>
+  </data>
+  <data name="PipeModeChangeFailed" xml:space="preserve">
+    <value>TODO: PipeModeChangeFailed</value>
+  </data>
+  <data name="PipeReadError" xml:space="preserve">
+    <value>TODO: PipeReadError</value>
+  </data>
+  <data name="PipeReadPending" xml:space="preserve">
+    <value>TODO: PipeReadPending</value>
+  </data>
+  <data name="PipeReadTimedOut" xml:space="preserve">
+    <value>TODO: PipeReadTimedOut</value>
+  </data>
+  <data name="PipeShutdownReadError" xml:space="preserve">
+    <value>TODO: PipeShutdownReadError</value>
+  </data>
+  <data name="PipeShutdownWriteError" xml:space="preserve">
+    <value>TODO: PipeShutdownWriteError</value>
+  </data>
+  <data name="PipeSignalExpected" xml:space="preserve">
+    <value>TODO: PipeSignalExpected</value>
+  </data>
+  <data name="PipeWriteError" xml:space="preserve">
+    <value>TODO: PipeWriteError</value>
+  </data>
+  <data name="PipeWriteIncomplete" xml:space="preserve">
+    <value>TODO: PipeWriteIncomplete</value>
+  </data>
+  <data name="PipeWritePending" xml:space="preserve">
+    <value>TODO: PipeWritePending</value>
+  </data>
+  <data name="PipeWriteTimedOut" xml:space="preserve">
+    <value>TODO: PipeWriteTimedOut</value>
+  </data>
+  <data name="TraceCodeFailedPipeConnect" xml:space="preserve">
+    <value>TODO: TraceCodeFailedPipeConnect</value>
+  </data>
+  <data name="TraceCodeInitiatingNamedPipeConnection" xml:space="preserve">
+    <value>TODO: TraceCodeInitiatingNamedPipeConnection</value>
+  </data>
+  <data name="TraceCodePipeConnectionAbort" xml:space="preserve">
+    <value>TODO: TraceCodePipeConnectionAbort</value>
+  </data>
+  <data name="ConfigInvalidTransactionFlowProtocolValue" xml:space="preserve">
+    <value>TODO: ConfigInvalidTransactionFlowProtocolValue</value>
+  </data>
+  <data name="InvalidPropagationToken" xml:space="preserve">
+    <value>TODO: InvalidPropagationToken</value>
+  </data>
+  <data name="InvalidWsatExtendedInfo" xml:space="preserve">
+    <value>TODO: InvalidWsatExtendedInfo</value>
+  </data>
+  <data name="IssuedTokenFlowNotAllowed" xml:space="preserve">
+    <value>TODO: IssuedTokenFlowNotAllowed</value>
+  </data>
+  <data name="OleTxHeaderCorrupt" xml:space="preserve">
+    <value>TODO: OleTxHeaderCorrupt</value>
+  </data>
+  <data name="PipeAcceptFailed" xml:space="preserve">
+    <value>TODO: PipeAcceptFailed</value>
+  </data>
+  <data name="PipeKnownWin32Error" xml:space="preserve">
+    <value>TODO: PipeKnownWin32Error</value>
+  </data>
+  <data name="PipeNameCanNotBeAccessed" xml:space="preserve">
+    <value>TODO: PipeNameCanNotBeAccessed</value>
+  </data>
+  <data name="PipeNameCanNotBeAccessed2" xml:space="preserve">
+    <value>TODO: PipeNameCanNotBeAccessed2</value>
+  </data>
+  <data name="PipeNameCantBeReserved" xml:space="preserve">
+    <value>TODO: PipeNameCantBeReserved</value>
+  </data>
+  <data name="PipeNameInUse" xml:space="preserve">
+    <value>TODO: PipeNameInUse</value>
+  </data>
+  <data name="PipeUnknownWin32Error" xml:space="preserve">
+    <value>TODO: PipeUnknownWin32Error</value>
+  </data>
+  <data name="PipeUriSchemeWrong" xml:space="preserve">
+    <value>TODO: PipeUriSchemeWrong</value>
+  </data>
+  <data name="SFxBadTransactionProtocols" xml:space="preserve">
+    <value>TODO: SFxBadTransactionProtocols</value>
+  </data>
+  <data name="SFxTransactionDeserializationFailed" xml:space="preserve">
+    <value>TODO: SFxTransactionDeserializationFailed</value>
+  </data>
+  <data name="SFxTransactionFlowRequired" xml:space="preserve">
+    <value>TODO: SFxTransactionFlowRequired</value>
+  </data>
+  <data name="SFxTransactionHeaderNotUnderstood" xml:space="preserve">
+    <value>TODO: SFxTransactionHeaderNotUnderstood</value>
+  </data>
+  <data name="SFxTryAddMultipleTransactionsOnMessage" xml:space="preserve">
+    <value>TODO: SFxTryAddMultipleTransactionsOnMessage</value>
+  </data>
+  <data name="TransactionFlowBadOption" xml:space="preserve">
+    <value>TODO: TransactionFlowBadOption</value>
+  </data>
+  <data name="TransactionFlowRequiredIssuedTokens" xml:space="preserve">
+    <value>TODO: TransactionFlowRequiredIssuedTokens</value>
+  </data>
 </root>

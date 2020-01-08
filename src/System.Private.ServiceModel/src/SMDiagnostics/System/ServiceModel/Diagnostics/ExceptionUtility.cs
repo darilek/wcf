@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 
+using System.Diagnostics;
 using System.Diagnostics.Tracing;
 using System.Runtime;
 using System.Xml;
@@ -99,6 +100,15 @@ namespace System.ServiceModel.Diagnostics
         internal Exception ThrowHelper(Exception exception, EventLevel eventLevel)
         {
             FxTrace.Exception.TraceEtwException(exception, eventLevel);
+
+            return exception;
+        }
+
+        internal Exception ThrowHelper(Exception exception, TraceEventType eventType)
+        {
+            //FxTrace.Exception.TraceEtwException(exception, eventLevel);
+
+            // TODO: Add correct trace info
 
             return exception;
         }

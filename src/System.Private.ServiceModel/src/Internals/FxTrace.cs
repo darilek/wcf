@@ -63,6 +63,14 @@ namespace System
             }
         }
 
+        public static bool ShouldTraceInformation { get; internal set; } = false;
+        public static bool ShouldTraceWarning { get; set; } = false;
+        public static bool ShouldTraceError { get; set; } = false;
+        public static bool ShouldTraceVerbose { get; set; } = false;
+        public static bool ShouldTraceWarningToTraceSource { get; set; } = false;
+        public static bool ShouldTraceInformationToTraceSource { get; set; } = false;
+        public static bool ShouldTraceCritical { get; set; } = false;
+
         [SuppressMessage(FxCop.Category.ReliabilityBasic, FxCop.Rule.UseNewGuidHelperRule,
             Justification = "This is a method that creates ETW provider passing Guid Provider ID.")]
         private static EtwDiagnosticTrace InitializeTracing()
@@ -88,6 +96,17 @@ namespace System
                     }
                 }
             }
+        }
+
+        public static void UpdateEventDefinitions(EventDescriptor[] descriptors, ushort[] toArray)
+        {
+           // throw new NotImplementedException();
+        }
+
+        public static bool IsEventEnabled(int eventIndex)
+        {
+            // TODO: add event trace support
+            return false;
         }
     }
 }
